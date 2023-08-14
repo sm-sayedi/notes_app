@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:notes_app/providers/notes_provider.dart';
 import 'package:provider/provider.dart';
 
+import 'providers/providers.dart';
 import 'screens/home_screen.dart';
 import 'services/services.dart';
 

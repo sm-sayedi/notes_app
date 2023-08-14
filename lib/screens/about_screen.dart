@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../constant.dart';
+import '../constants.dart';
 
 class AboutScreen extends StatelessWidget {
   const AboutScreen({super.key});
@@ -14,7 +14,7 @@ class AboutScreen extends StatelessWidget {
         leading: IconButton.filled(
           onPressed: () => Navigator.maybePop(context),
           icon: const Icon(Icons.arrow_back_ios_new),
-          style: Constant.buttonStyle,
+          style: Constants.buttonStyle,
         ),
       ),
       body: const Padding(

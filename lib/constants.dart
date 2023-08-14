@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class Constant {
-  Constant._();
+class Constants {
+  Constants._();
 
   static List<Color> colors = [
     Colors.grey,

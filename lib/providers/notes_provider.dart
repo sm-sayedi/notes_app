@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../constant.dart';
+import '../constants.dart';
 import '../models/models.dart';
 import '../services/services.dart';
 
@@ -25,7 +25,7 @@ class NotesProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  int _noteColor = Constant.colors.first.value;
+  int _noteColor = Constants.colors.first.value;
 
   int get noteColor => _noteColor;
 

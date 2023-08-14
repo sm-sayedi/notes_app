@@ -4,16 +4,22 @@ class Note {
   String title;
   String content;
   int color;
-  int updatedAt;
   final int createdAt;
+  int updatedAt;
 
   Note({
     required this.title,
     required this.content,
     required this.color,
-    required this.updatedAt,
     required this.createdAt,
+    required this.updatedAt,
   });
+
+  static const String titleLabel = 'title';
+  static const String contentLabel = 'content';
+  static const String colorLabel = 'color';
+  static const String createdAtLabel = 'createdAt';
+  static const String updatedAtLabel = 'updatedAt';
 
   @override
   String toString() {
@@ -22,21 +28,21 @@ class Note {
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
-      'title': title,
-      'content': content,
-      'color': color,
-      'updatedAt': updatedAt,
-      'createdAt': createdAt,
+      titleLabel: title,
+      contentLabel: content,
+      colorLabel: color,
+      createdAtLabel: createdAt,
+      updatedAtLabel: updatedAt,
     };
   }
 
   factory Note.fromMap(Map<String, dynamic> map) {
     return Note(
-      title: map['title'] as String,
-      content: map['content'] as String,
-      color: map['color'] as int,
-      updatedAt: map['updatedAt'] as int,
-      createdAt: map['createdAt'] as int,
+      title: map[titleLabel] as String,
+      content: map[contentLabel] as String,
+      color: map[colorLabel] as int,
+      createdAt: map[createdAtLabel] as int,
+      updatedAt: map[updatedAtLabel] as int,
     );
   }
 

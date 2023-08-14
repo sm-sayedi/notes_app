@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../constant.dart';
-import '../models/note.dart';
+import '../constants.dart';
+import '../models/models.dart';
 import '../providers/providers.dart';
 import '../widgets/widgets.dart';
 
@@ -54,7 +54,7 @@ class _AddOrEditNoteScreenState extends State<AddOrEditNoteScreen> {
             leading: IconButton.filled(
               onPressed: () => Navigator.maybePop(context),
               icon: const Icon(Icons.arrow_back_ios_new),
-              style: Constant.buttonStyle,
+              style: Constants.buttonStyle,
             ),
             actions: [
               IconButton(
@@ -69,7 +69,7 @@ class _AddOrEditNoteScreenState extends State<AddOrEditNoteScreen> {
               ),
               IconButton(
                 onPressed:
-                    isNothingChanged(provider) ? null : () => save(context),
+                    isNothingChanged(provider) ? null : () => saveNote(context),
                 icon: const Icon(Icons.save),
                 style: IconButton.styleFrom(
                   backgroundColor: Colors.black,
@@ -102,8 +102,8 @@ class _AddOrEditNoteScreenState extends State<AddOrEditNoteScreen> {
                     hintStyle: TextStyle(color: Colors.white),
                     fillColor: Colors.grey,
                     filled: true,
-                    enabledBorder: Constant.textFieldBorder,
-                    focusedBorder: Constant.textFieldBorder,
+                    enabledBorder: Constants.textFieldBorder,
+                    focusedBorder: Constants.textFieldBorder,
                   ),
                 ),
                 const SizedBox(height: 8),
@@ -119,8 +119,8 @@ class _AddOrEditNoteScreenState extends State<AddOrEditNoteScreen> {
                     hintStyle: TextStyle(color: Colors.white),
                     fillColor: Colors.grey,
                     filled: true,
-                    enabledBorder: Constant.textFieldBorder,
-                    focusedBorder: Constant.textFieldBorder,
+                    enabledBorder: Constants.textFieldBorder,
+                    focusedBorder: Constants.textFieldBorder,
                   ),
                 ),
               ],
@@ -131,7 +131,7 @@ class _AddOrEditNoteScreenState extends State<AddOrEditNoteScreen> {
     });
   }
 
-  void save(BuildContext context) {
+  void saveNote(BuildContext context) {
     final NotesProvider provider = Provider.of(context, listen: false);
     int now = DateTime.now().microsecondsSinceEpoch;
     if (widget.note == null) {

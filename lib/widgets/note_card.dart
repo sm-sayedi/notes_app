@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:notes_app/providers/notes_provider.dart';
 import 'package:provider/provider.dart';
 
 import '../models/models.dart';
+import '../providers/providers.dart';
 import '../screens/screens.dart';
 
 class NoteCard extends StatelessWidget {
@@ -60,30 +60,7 @@ class NoteCard extends StatelessWidget {
             right: 0,
             bottom: 4,
             child: IconButton(
-              onPressed: () async {
-                final bool? shouldDelete = await showDialog<bool?>(
-                  context: context,
-                  builder: (context) => AlertDialog(
-                    content: const Text('Do you want to delete this note?'),
-                    actions: [
-                      TextButton(
-                        onPressed: () => Navigator.pop(context, false),
-                        child: const Text('No'),
-                      ),
-                      TextButton(
-                        onPressed: () => Navigator.pop(context, true),
-                        child: const Text('Yes'),
-                      ),
-                    ],
-                  ),
-                );
-                if (shouldDelete ?? false) {
-                  if (context.mounted) {
-                    Provider.of<NotesProvider>(context, listen: false)
-                        .deleteNote(note);
-                  }
-                }
-              },
+              onPressed: () => deleteNote(context),
               icon: Icon(
                 Icons.delete,
                 color: foregroundColor,
@@ -93,5 +70,29 @@ class NoteCard extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  void deleteNote(BuildContext context) async {
+    final bool? shouldDelete = await showDialog<bool?>(
+      context: context,
+      builder: (context) => AlertDialog(
+        content: const Text('Do you want to delete this note?'),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context, false),
+            child: const Text('No'),
+          ),
+          TextButton(
+            onPressed: () => Navigator.pop(context, true),
+            child: const Text('Yes'),
+          ),
+        ],
+      ),
+    );
+    if (shouldDelete ?? false) {
+      if (context.mounted) {
+        Provider.of<NotesProvider>(context, listen: false).deleteNote(note);
+      }
+    }
   }
 }

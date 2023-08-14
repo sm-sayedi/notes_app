@@ -1,6 +1,7 @@
-import 'package:notes_app/services/services.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
+
+import 'services.dart';
 
 class DatabaseService {
   static Database? _database;
@@ -23,7 +24,7 @@ class DatabaseService {
   }
 
   Future<String> get fullPath async {
-    const name = 'app_database';
+    const name = 'notes_app.db';
     final path = await getDatabasesPath();
     return join(path, name);
   }

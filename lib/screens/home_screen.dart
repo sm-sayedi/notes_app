@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../constant.dart';
+import '../constants.dart';
 import '../providers/providers.dart';
 import '../widgets/widgets.dart';
 import 'screens.dart';
@@ -30,23 +30,22 @@ class _HomeScreenState extends State<HomeScreen> {
         centerTitle: true,
         actions: [
           IconButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (_) => const AboutScreen()),
-              );
-            },
+            onPressed: () => Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => const AboutScreen()),
+            ),
             icon: const Icon(Icons.info_outlined),
-            style: Constant.buttonStyle,
+            style: Constants.buttonStyle,
           ),
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.of(context).push(
-            MaterialPageRoute(builder: (_) => const AddOrEditNoteScreen()),
-          );
-        },
+        onPressed: () => Navigator.push(
+          context,
+          MaterialPageRoute(builder: (_) => const AddOrEditNoteScreen()),
+        ),
+        backgroundColor: Colors.black,
+        foregroundColor: Colors.white,
         child: const Icon(Icons.add),
       ),
       body: Consumer<NotesProvider>(
@@ -56,22 +55,32 @@ class _HomeScreenState extends State<HomeScreen> {
             child: provider.loadingStatus == LoadingStatus.loading
                 ? const CircularProgressIndicator.adaptive()
                 : provider.notes.isEmpty
-                    ? const Text(
-                        'No notes yet! Start adding one!',
-                        style: TextStyle(fontSize: 18),
-                        textAlign: TextAlign.center,
+                    ? Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          const Text(
+                            'No notes yet!',
+                            style: TextStyle(
+                              fontSize: 24,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                          const SizedBox(height: 8),
+                          OutlinedButton.icon(
+                            icon: const Icon(Icons.add),
+                            label: const Text('Add one'),
+                            onPressed: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (_) => const AddOrEditNoteScreen()),
+                            ),
+                            style: TextButton.styleFrom(
+                                foregroundColor: Colors.black),
+                          )
+                        ],
                       )
-                    : GridView.builder(
-                        gridDelegate:
-                            const SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2,
-                          crossAxisSpacing: 8,
-                          mainAxisSpacing: 8,
-                        ),
-                        itemCount: provider.notes.length,
-                        itemBuilder: (_, int index) =>
-                            NoteCard(note: provider.notes[index]),
-                      ),
+                    : const NotesGrid(),
           ),
         ),
       ),

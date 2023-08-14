@@ -7,11 +7,11 @@ class NoteDBHelper {
   NoteDBHelper._();
 
   static const String tableName = 'notes';
-  static const String title = 'title';
-  static const String content = 'content';
-  static const String color = 'color';
-  static const String createdAt = 'updatedAt';
-  static const String updatedAt = 'createdAt';
+  static const String title = Note.titleLabel;
+  static const String content = Note.contentLabel;
+  static const String color = Note.colorLabel;
+  static const String createdAt = Note.createdAtLabel;
+  static const String updatedAt = Note.updatedAtLabel;
 
   static Future<void> createTable(Database database) async {
     database.execute(

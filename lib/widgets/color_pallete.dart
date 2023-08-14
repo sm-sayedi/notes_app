@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../constant.dart';
+import '../constants.dart';
 
 class ColorPallete extends StatelessWidget {
   const ColorPallete({super.key});
@@ -8,10 +8,10 @@ class ColorPallete extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.sizeOf(context);
-    final List<Color> colors = Constant.colors;
+    final List<Color> colors = Constants.colors;
     return Center(
       child: Container(
-        width: size.width * 0.4,
+        width: size.width * 0.5,
         padding: const EdgeInsets.all(12),
         decoration: BoxDecoration(
           color: Colors.black,
@@ -19,8 +19,8 @@ class ColorPallete extends StatelessWidget {
         ),
         child: GridView.count(
           crossAxisCount: 4,
-          crossAxisSpacing: 4,
-          mainAxisSpacing: 4,
+          crossAxisSpacing: 8,
+          mainAxisSpacing: 8,
           padding: EdgeInsets.zero,
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
